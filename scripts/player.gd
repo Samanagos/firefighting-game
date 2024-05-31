@@ -25,7 +25,9 @@ func _physics_process(delta):
 	linear_velocity.x = move.x
 	if Input.is_action_pressed("water"):
 		hose_spray(delta)
-
+		
 func hose_spray(delta: float):
 	var mouse_position = get_viewport().get_mouse_position()
-	print(mouse_position)
+	var spray_direction = (mouse_position - global_position).normalized()
+	apply_central_force(-spray_direction * 5000)
+	print(spray_direction)
