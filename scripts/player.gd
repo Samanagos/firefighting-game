@@ -11,6 +11,8 @@ var grounded: bool = false
 const mult = 100
 
 var spraying = false
+var pressure = 100
+var spray_intensity = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,17 +23,24 @@ func _physics_process(delta):
 	# Grounded:
 	if $GroundLeft.is_colliding() || $GroundRight.is_colliding(): grounded = true
 	else: grounded = false
-
+	
+	#recharge pressure if grounded
+	if pressure < 100 && grounded == true:
+		pressure += 5
+	if pressure > 100:
+		pressure = 100
+	
 	movement(delta)
 
 	# Spray stuff
+	
 	var mouse_position = get_viewport().get_mouse_position()
 	var spray_direction = (mouse_position - global_position).normalized()
 
 	$HoseNozzle.hose_pointing(spray_direction)
 	if Input.is_action_just_pressed("spray"):
 		spraying = true
-		$HoseNozzle/WaterParticles.amount_ratio = 1
+		$HoseNozzle/WaterParticles.amount_ratio = spray_intensity
 	elif Input.is_action_just_released("spray"):
 		spraying = false
 		$HoseNozzle/WaterParticles.amount_ratio = 0
@@ -67,5 +76,10 @@ func movement(delta: float):
 		
 
 func hose_spray(delta: float, spray_direction):
-	apply_central_impulse(-spray_direction * spray_power * mult * delta)
-	$HoseNozzle/WaterParticles.spray_toggle()
+	if pressure > 0:
+		apply_central_impulse(-spray_direction * spray_power * mult * delta)
+		$HoseNozzle/WaterParticles.spray_toggle()
+		pressure -= 1
+		spray_intensity = pressure / 100
+		if pressure < 0:
+			pressure = 0
