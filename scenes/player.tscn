@@ -1,13 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://7segohc0sfkl"]
+[gd_scene load_steps=10 format=3 uid="uid://7segohc0sfkl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_isvvp"]
 [ext_resource type="Script" path="res://scripts/HoseNozzle.gd" id="2_8bjvu"]
+[ext_resource type="Script" path="res://scripts/WaterParticles.gd" id="3_v67gs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0v1r"]
 size = Vector2(22, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldrmh"]
 size = Vector2(24, 42)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5cuhi"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_a3nvv"]
+offsets = PackedFloat32Array(0.422535, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.831373, 1, 0.698039)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2xut3"]
+gradient = SubResource("Gradient_a3nvv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lp7ip"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.1
+direction = Vector3(100000, 0, 0)
+spread = 3.176
+flatness = 0.471
+initial_velocity_min = 364.71
+initial_velocity_max = 499.99
+gravity = Vector3(0, 98, 0)
+scale_max = 5.0
+color_ramp = SubResource("GradientTexture1D_2xut3")
+hue_variation_min = -0.01
+anim_speed_max = 6.6
+anim_offset_min = 0.3118
+anim_offset_max = 0.6589
+turbulence_enabled = true
+turbulence_noise_strength = 15.89
+turbulence_noise_scale = 8.974
+turbulence_noise_speed = Vector3(1000, 0, 0)
+turbulence_noise_speed_random = 4.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.026
 
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 1.5
@@ -45,6 +85,14 @@ offset_bottom = 5.0
 pivot_offset = Vector2(5, 5)
 color = Color(1, 0.815686, 0.290196, 1)
 script = ExtResource("2_8bjvu")
+
+[node name="WaterParticles" type="GPUParticles2D" parent="HoseNozzle"]
+material = SubResource("CanvasItemMaterial_5cuhi")
+position = Vector2(32, 5)
+amount = 100000
+amount_ratio = 0.0
+process_material = SubResource("ParticleProcessMaterial_lp7ip")
+script = ExtResource("3_v67gs")
 
 [node name="GroundLeft" type="RayCast2D" parent="."]
 position = Vector2(-11, 0)

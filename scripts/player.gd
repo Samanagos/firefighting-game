@@ -10,6 +10,8 @@ var grounded: bool = false
 
 const mult = 100
 
+var spraying = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lock_rotation = true
@@ -27,8 +29,15 @@ func _physics_process(delta):
 	var spray_direction = (mouse_position - global_position).normalized()
 
 	$HoseNozzle.hose_pointing(spray_direction)
-	if Input.is_action_pressed("spray"):
-		hose_spray(delta, spray_direction)
+	if Input.is_action_just_pressed("spray"):
+		spraying = true
+		$HoseNozzle/WaterParticles.amount_ratio = 1
+	elif Input.is_action_just_released("spray"):
+		spraying = false
+		$HoseNozzle/WaterParticles.amount_ratio = 0
+		
+	if spraying: hose_spray(delta, spray_direction)
+
 
 # Handle the moving of the character
 func movement(delta: float):
@@ -55,7 +64,8 @@ func movement(delta: float):
 
 	if grounded && Input.is_action_just_pressed("move_jump"):
 		apply_central_impulse(Vector2.UP * jump_power * delta * mult)
+		
 
 func hose_spray(delta: float, spray_direction):
 	apply_central_impulse(-spray_direction * spray_power * mult * delta)
-	print(spray_direction)
+	$HoseNozzle/WaterParticles.spray_toggle()
