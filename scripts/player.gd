@@ -33,9 +33,9 @@ func _physics_process(delta):
 	movement(delta)
 
 	# Spray stuff
-	
-	var mouse_position = get_viewport().get_mouse_position()
-	var spray_direction = (mouse_position - global_position).normalized()
+
+	var mouse_position = $Cam.get_viewport().get_mouse_position()
+	var spray_direction = (mouse_position - $Cam.get_viewport_rect().size/2).normalized()
 
 	$HoseNozzle.hose_pointing(spray_direction)
 	if Input.is_action_just_pressed("spray"):
