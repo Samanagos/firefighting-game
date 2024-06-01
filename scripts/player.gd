@@ -25,11 +25,14 @@ func _physics_process(delta):
 	if grounded && Input.is_action_just_pressed("move_jump"):
 		apply_central_impulse(Vector2.UP * jump_power * delta * mult)
 	
-	if Input.is_action_pressed("spray"):
-		hose_spray(delta)
-		
-func hose_spray(delta: float):
+	# Spray stuff
 	var mouse_position = get_viewport().get_mouse_position()
 	var spray_direction = (mouse_position - global_position).normalized()
+	
+	$HoseNozzle.hose_pointing(spray_direction)
+	if Input.is_action_pressed("spray"):
+		hose_spray(delta, spray_direction)
+		
+func hose_spray(delta: float, spray_direction):
 	apply_central_impulse(-spray_direction * spray_power * mult * delta)
 	print(spray_direction)
