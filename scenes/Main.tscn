@@ -8,6 +8,7 @@ position = Vector2(5, 494)
 
 [node name="Player" parent="." instance=ExtResource("1_7s12c")]
 position = Vector2(36, -38)
+spray_power = 20.0
 
 [node name="MainPlat" parent="." instance=ExtResource("2_xnqmj")]
 position = Vector2(506, 9)
