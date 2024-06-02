@@ -1,15 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbrllftwx3ld7"]
+[gd_scene format=3 uid="uid://cbrllftwx3ld7"]
 
-[ext_resource type="Texture2D" uid="uid://c327w7t0cd3dd" path="res://sprites/Barrometer.png" id="1_gr4ag"]
-
-[node name="UI" type="Node2D"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -3.0
-offset_top = -23.0
-offset_right = 3.0
-offset_bottom = 23.0
-color = Color(0.101961, 0.772549, 0.866667, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gr4ag")
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0

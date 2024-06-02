@@ -12,16 +12,24 @@ const mult = 100
 @export var spray_power: float = 30;
 @export var discharge_speed: float = 110
 @export var charge_speed: float = 40
-@export var max_pressure: float = 100
+@export var max_pressure: float = 200
 var pressure: float = max_pressure
 var spraying: bool = false
 var spray_intensity: float = 1
 # Called when the node enters the scene tree for the first time.
+
+var p_size = 0
+
 func _ready():
 	lock_rotation = true
+	p_size = $Cam/PressureBar.size.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	#pressure bar
+	$Cam/PressureBar.size.y = p_size * pressure / max_pressure
+	
+	
 	# Grounded:
 	if $GroundLeft.is_colliding() || $GroundRight.is_colliding(): grounded = true
 	else: grounded = false
@@ -55,6 +63,7 @@ func movement(delta: float):
 	if Input.is_action_pressed("move_right"):
 		var d_imp = Vector2.RIGHT * speed * delta * mult
 		var vel = d_imp / mass
+		$BodyCol/firefightersprite.scale.x = abs($BodyCol/firefightersprite.scale.x)
 
 		if (vel + linear_velocity).length() > max_speed:
 			vel = vel.normalized() * (clamp(max_speed - linear_velocity.length(), 0, max_speed))
@@ -64,6 +73,8 @@ func movement(delta: float):
 	elif Input.is_action_pressed("move_left"):
 		var d_imp = Vector2.LEFT * speed * delta * mult
 		var vel = d_imp / mass
+		$BodyCol/firefightersprite.scale.x = -abs($BodyCol/firefightersprite.scale.x)
+
 
 		if (vel + linear_velocity).length() > max_speed:
 			vel = vel.normalized() * (clamp(max_speed - linear_velocity.length(), 0, max_speed))

@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5mtvc6m481b2"]
+[gd_scene load_steps=6 format=3 uid="uid://b5mtvc6m481b2"]
 
 [ext_resource type="PackedScene" uid="uid://7segohc0sfkl" path="res://scenes/player.tscn" id="1_7s12c"]
 [ext_resource type="PackedScene" uid="uid://bwt5qex4ltk7a" path="res://scenes/platform.tscn" id="2_xnqmj"]
 [ext_resource type="Texture2D" uid="uid://4pf6ul4e1egh" path="res://sprites/Hydrant.png" id="2_y2nw0"]
 [ext_resource type="PackedScene" uid="uid://dwu6vg68y73ro" path="res://scenes/firehydrant.tscn" id="3_icb62"]
+[ext_resource type="Texture2D" uid="uid://c327w7t0cd3dd" path="res://sprites/Barrometer.png" id="4_itxgf"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(5, 494)
 
 [node name="FireHydrant" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_icb62")]
-position = Vector2(476, -34)
+position = Vector2(484, -35)
 player = NodePath("../Player")
 
 [node name="Sprite2D" type="Sprite2D" parent="FireHydrant"]
-position = Vector2(-0.999996, -10)
-scale = Vector2(7.4375, 7.4375)
+position = Vector2(3.8147e-06, -2)
+scale = Vector2(4.92188, 4.92188)
 texture = ExtResource("2_y2nw0")
 
 [node name="Player" parent="." instance=ExtResource("1_7s12c")]
@@ -22,6 +23,19 @@ position = Vector2(66, -48)
 spray_power = 20.0
 
 [node name="Cam" type="Camera2D" parent="Player"]
+
+[node name="PressureBar" type="ColorRect" parent="Player/Cam"]
+offset_left = -529.0
+offset_top = -137.0
+offset_right = -513.0
+offset_bottom = 4.0
+rotation = 3.14159
+color = Color(0.0980392, 0.796078, 0.870588, 1)
+
+[node name="Barrometer" type="Sprite2D" parent="Player/Cam"]
+position = Vector2(-535.5, -208)
+scale = Vector2(3.0625, 3.0625)
+texture = ExtResource("4_itxgf")
 
 [node name="MainPlat" parent="." instance=ExtResource("2_xnqmj")]
 position = Vector2(560, 9)

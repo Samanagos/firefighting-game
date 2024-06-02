@@ -8,34 +8,6 @@ size = Vector2(124, 98)
 [node name="FireHydrant" type="Node2D"]
 script = ExtResource("1_l2h06")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -33.0
-offset_right = 20.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.884257, 0.126487, 0.250402, 1)
-
-[node name="ColorRect" type="ColorRect" parent="ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -7.0
-offset_right = 10.0
-offset_bottom = 7.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="DetectShape" type="Area2D" parent="."]
 collision_layer = 0
 

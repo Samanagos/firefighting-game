@@ -8,10 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://bd2emgnhih8mf" path="res://sound/565737__laughatlantic__wilkies-pools-waterfalls.mp3" id="6_mw5pq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0v1r"]
-size = Vector2(22, 40)
+size = Vector2(30, 79)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldrmh"]
-size = Vector2(33, 75)
+size = Vector2(33, 78)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5cuhi"]
 particles_animation = true
@@ -53,11 +53,13 @@ turbulence_influence_min = 0.0
 turbulence_influence_max = 0.026
 
 [node name="Player" type="RigidBody2D"]
+position = Vector2(0, -10)
 gravity_scale = 1.5
 script = ExtResource("1_isvvp")
 jump_power = 350.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -4.5)
 shape = SubResource("RectangleShape2D_k0v1r")
 
 [node name="BodyCol" type="Area2D" parent="."]
@@ -69,7 +71,7 @@ scale = Vector2(7, 7)
 texture = ExtResource("2_el238")
 
 [node name="Detector" type="CollisionShape2D" parent="BodyCol"]
-position = Vector2(3.5, -5.5)
+position = Vector2(3.5, -4)
 shape = SubResource("RectangleShape2D_ldrmh")
 
 [node name="HoseNozzle" type="Sprite2D" parent="."]
@@ -92,11 +94,11 @@ script = ExtResource("3_v67gs")
 
 [node name="GroundLeft" type="RayCast2D" parent="."]
 position = Vector2(-8, 0)
-target_position = Vector2(0, 36)
+target_position = Vector2(0, 41)
 
 [node name="GroundRight" type="RayCast2D" parent="."]
 position = Vector2(16, 0)
-target_position = Vector2(0, 36)
+target_position = Vector2(0, 41)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_mw5pq")
