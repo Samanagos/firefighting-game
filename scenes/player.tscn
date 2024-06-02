@@ -11,6 +11,10 @@ size = Vector2(22, 40)
 size = Vector2(24, 42)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5cuhi"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_a3nvv"]
 offsets = PackedFloat32Array(0.422535, 1)
