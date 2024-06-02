@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5mtvc6m481b2"]
+[gd_scene load_steps=4 format=3 uid="uid://b5mtvc6m481b2"]
 
 [ext_resource type="PackedScene" uid="uid://7segohc0sfkl" path="res://scenes/player.tscn" id="1_7s12c"]
 [ext_resource type="PackedScene" uid="uid://bwt5qex4ltk7a" path="res://scenes/platform.tscn" id="2_xnqmj"]
+[ext_resource type="PackedScene" uid="uid://dwu6vg68y73ro" path="res://scenes/firehydrant.tscn" id="3_icb62"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(5, 494)
+
+[node name="FireHydrant" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_icb62")]
+position = Vector2(476, -34)
+player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_7s12c")]
 position = Vector2(66, -48)
@@ -23,3 +28,11 @@ rotation = 1.5708
 [node name="Platform2" parent="." instance=ExtResource("2_xnqmj")]
 position = Vector2(1135, 0)
 rotation = 1.5708
+
+[node name="MainPlat2" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(1216, 233)
+scale = Vector2(21.8, 1)
+
+[node name="MainPlat3" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(-67.9998, 357)
+scale = Vector2(21.8, 1)
