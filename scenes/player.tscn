@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://7segohc0sfkl"]
+[gd_scene load_steps=13 format=3 uid="uid://7segohc0sfkl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_isvvp"]
 [ext_resource type="Script" path="res://scripts/HoseNozzle.gd" id="2_8bjvu"]
 [ext_resource type="Texture2D" uid="uid://bu7fuebmfayef" path="res://sprites/Nozzle.png" id="2_61k7d"]
 [ext_resource type="Texture2D" uid="uid://c0buywxoliyid" path="res://sprites/FireFighter1.png" id="2_el238"]
 [ext_resource type="Script" path="res://scripts/WaterParticles.gd" id="3_v67gs"]
+[ext_resource type="AudioStream" uid="uid://bd2emgnhih8mf" path="res://sound/565737__laughatlantic__wilkies-pools-waterfalls.mp3" id="6_mw5pq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0v1r"]
 size = Vector2(22, 40)
@@ -96,3 +97,6 @@ target_position = Vector2(0, 36)
 [node name="GroundRight" type="RayCast2D" parent="."]
 position = Vector2(16, 0)
 target_position = Vector2(0, 36)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_mw5pq")

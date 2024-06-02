@@ -39,8 +39,10 @@ func _physics_process(delta):
 	$HoseNozzle.hose_pointing(spray_direction)
 	if Input.is_action_just_pressed("spray"):
 		spraying = true
+		$AudioStreamPlayer2D.play()
 	elif Input.is_action_just_released("spray"):
 		spraying = false
+		$AudioStreamPlayer2D.stop()
 		$HoseNozzle/WaterParticles.amount_ratio = 0
 
 	if spraying:
@@ -76,7 +78,7 @@ func movement(delta: float):
 func hose_spray(delta: float, spray_direction):
 	if pressure > 1:
 		apply_central_impulse(-spray_direction * spray_power * mult * delta)
-
+		
 		$HoseNozzle/WaterParticles.amount_ratio = spray_intensity
 		pressure = clampf(pressure - delta * discharge_speed, 0, max_pressure)
 		spray_intensity = pressure / 100.0
