@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfe2u4ae8numy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70xhi"]
+size = Vector2(11, 13)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yalqa"]
+
+[sub_resource type="Gradient" id="Gradient_3hn3j"]
+offsets = PackedFloat32Array(0, 0.619718, 0.806338, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.823529, 0.129412, 1, 1, 0.52549, 0, 1, 1, 0.309804, 0.141176, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bsouu"]
+gradient = SubResource("Gradient_3hn3j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7grkq"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -100, 0)
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_bsouu")
+turbulence_enabled = true
+turbulence_noise_strength = 14.41
+turbulence_noise_scale = 0.923
+turbulence_noise_speed_random = 3.81
+turbulence_influence_min = 0.136
+turbulence_influence_max = 0.707
+
+[node name="FireArea" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(261, -30)
+shape = SubResource("RectangleShape2D_70xhi")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CollisionShape2D"]
+material = SubResource("CanvasItemMaterial_yalqa")
+position = Vector2(0, 4.5)
+amount = 10000
+process_material = SubResource("ParticleProcessMaterial_7grkq")
+lifetime = 1.5
+collision_base_size = 0.0

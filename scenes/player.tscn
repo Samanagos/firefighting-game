@@ -11,10 +11,6 @@ size = Vector2(22, 40)
 size = Vector2(24, 42)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5cuhi"]
-particles_animation = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
 
 [sub_resource type="Gradient" id="Gradient_a3nvv"]
 offsets = PackedFloat32Array(0.422535, 1)
@@ -88,10 +84,13 @@ script = ExtResource("2_8bjvu")
 
 [node name="WaterParticles" type="GPUParticles2D" parent="HoseNozzle"]
 material = SubResource("CanvasItemMaterial_5cuhi")
-position = Vector2(32, 5)
+position = Vector2(29, 5)
 amount = 100000
 amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_lp7ip")
+lifetime = 1.5
+collision_base_size = 0.01
+trail_lifetime = 0.5
 script = ExtResource("3_v67gs")
 
 [node name="GroundLeft" type="RayCast2D" parent="."]
