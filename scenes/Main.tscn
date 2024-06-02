@@ -10,7 +10,7 @@
 position = Vector2(5, 494)
 
 [node name="FireHydrant" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_icb62")]
-position = Vector2(484, -35)
+position = Vector2(476, -30)
 player = NodePath("../Player")
 
 [node name="Sprite2D" type="Sprite2D" parent="FireHydrant"]
@@ -19,7 +19,7 @@ scale = Vector2(4.92188, 4.92188)
 texture = ExtResource("2_y2nw0")
 
 [node name="Player" parent="." instance=ExtResource("1_7s12c")]
-position = Vector2(66, -48)
+position = Vector2(75, -94)
 spray_power = 20.0
 
 [node name="Cam" type="Camera2D" parent="Player"]
@@ -42,16 +42,50 @@ position = Vector2(560, 9)
 scale = Vector2(21.8, 1)
 
 [node name="Platform" parent="." instance=ExtResource("2_xnqmj")]
-rotation = 1.5708
+position = Vector2(67, -22)
 
 [node name="Platform2" parent="." instance=ExtResource("2_xnqmj")]
-position = Vector2(1135, 0)
-rotation = 1.5708
+position = Vector2(19, -22)
 
-[node name="MainPlat2" parent="." instance=ExtResource("2_xnqmj")]
-position = Vector2(1216, 233)
-scale = Vector2(21.8, 1)
+[node name="Platform3" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(115, -22)
 
-[node name="MainPlat3" parent="." instance=ExtResource("2_xnqmj")]
-position = Vector2(-67.9998, 357)
-scale = Vector2(21.8, 1)
+[node name="Platform4" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(-29, -22)
+extinguished = false
+
+[node name="Platform5" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(-125, -22)
+
+[node name="Platform6" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(-173, -22)
+
+[node name="Platform7" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(-77, -22)
+
+[node name="Platform8" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(-221, -22)
+
+[node name="Platform9" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(523, 26)
+
+[node name="Platform10" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(475, 26)
+
+[node name="Platform11" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(571, 26)
+
+[node name="Platform12" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(427, 26)
+
+[node name="Platform13" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(331, 26)
+
+[node name="Platform14" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(283, 26)
+
+[node name="Platform15" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(379, 26)
+
+[node name="Platform16" parent="." instance=ExtResource("2_xnqmj")]
+position = Vector2(235, 26)

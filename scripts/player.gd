@@ -35,8 +35,6 @@ func _physics_process(delta):
 	else: grounded = false
 
 	pressure = clampf(pressure + delta * charge_speed, 0, max_pressure)
-	print(pressure)
-
 	movement(delta)
 
 	# Spray stuff
@@ -46,9 +44,11 @@ func _physics_process(delta):
 
 	$HoseNozzle.hose_pointing(spray_direction)
 	if Input.is_action_just_pressed("spray"):
+		$HoseNozzle/SprayColArea.monitorable = true
 		spraying = true
 		$AudioStreamPlayer2D.play()
 	elif Input.is_action_just_released("spray"):
+		$HoseNozzle/SprayColArea.monitorable = false
 		spraying = false
 		$AudioStreamPlayer2D.stop()
 		$HoseNozzle/WaterParticles.amount_ratio = 0

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_isvvp"]
 [ext_resource type="Script" path="res://scripts/HoseNozzle.gd" id="2_8bjvu"]
-[ext_resource type="Texture2D" uid="uid://bu7fuebmfayef" path="res://sprites/Nozzle.png" id="2_61k7d"]
 [ext_resource type="Texture2D" uid="uid://c0buywxoliyid" path="res://sprites/FireFighter1.png" id="2_el238"]
+[ext_resource type="Texture2D" uid="uid://bu7fuebmfayef" path="res://sprites/Nozzle.png" id="3_p7s8x"]
 [ext_resource type="Script" path="res://scripts/WaterParticles.gd" id="3_v67gs"]
 [ext_resource type="AudioStream" uid="uid://bd2emgnhih8mf" path="res://sound/565737__laughatlantic__wilkies-pools-waterfalls.mp3" id="6_mw5pq"]
 
@@ -75,9 +75,9 @@ position = Vector2(3.5, -4)
 shape = SubResource("RectangleShape2D_ldrmh")
 
 [node name="HoseNozzle" type="Sprite2D" parent="."]
-position = Vector2(4, -5)
-scale = Vector2(4.40039, 3.80574)
-texture = ExtResource("2_61k7d")
+position = Vector2(16, -5)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("3_p7s8x")
 script = ExtResource("2_8bjvu")
 
 [node name="WaterParticles" type="GPUParticles2D" parent="HoseNozzle"]
@@ -91,6 +91,15 @@ lifetime = 1.5
 collision_base_size = 0.01
 trail_lifetime = 0.5
 script = ExtResource("3_v67gs")
+
+[node name="SprayColArea" type="Area2D" parent="HoseNozzle"]
+position = Vector2(4.57143, -4.76837e-07)
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="SprayColArea" type="CollisionPolygon2D" parent="HoseNozzle/SprayColArea"]
+polygon = PackedVector2Array(0, -0.857143, 0, 1.42857, 118.857, 19.7143, 118.857, -16.8571)
 
 [node name="GroundLeft" type="RayCast2D" parent="."]
 position = Vector2(-8, 0)
