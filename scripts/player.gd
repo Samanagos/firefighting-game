@@ -1,19 +1,21 @@
 extends RigidBody2D
 
+@export_category("Move Variables")
 @export var speed: float = 25;
 @export var max_speed: float = 750;
-@export var x_damp: float = 750;
 @export var jump_power: float = 500;
-@export var spray_power: float = 500;
 
 var grounded: bool = false
 
 const mult = 100
-
-var spraying = false
-var pressure = 100
-var spray_intensity = 1
-
+@export_category("Spray Variables")
+@export var spray_power: float = 30;
+@export var discharge_speed: float = 110
+@export var charge_speed: float = 40
+@export var max_pressure: float = 100
+var pressure: float = max_pressure
+var spraying: bool = false
+var spray_intensity: float = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lock_rotation = true
@@ -23,13 +25,10 @@ func _physics_process(delta):
 	# Grounded:
 	if $GroundLeft.is_colliding() || $GroundRight.is_colliding(): grounded = true
 	else: grounded = false
-	
-	#recharge pressure if grounded
-	if pressure < 100 && grounded == true:
-		pressure += 5
-	if pressure > 100:
-		pressure = 100
-	
+
+	pressure = clampf(pressure + delta * charge_speed, 0, max_pressure)
+	print(pressure)
+
 	movement(delta)
 
 	# Spray stuff
@@ -40,13 +39,12 @@ func _physics_process(delta):
 	$HoseNozzle.hose_pointing(spray_direction)
 	if Input.is_action_just_pressed("spray"):
 		spraying = true
-		$HoseNozzle/WaterParticles.amount_ratio = spray_intensity
 	elif Input.is_action_just_released("spray"):
 		spraying = false
 		$HoseNozzle/WaterParticles.amount_ratio = 0
-		
-	if spraying: hose_spray(delta, spray_direction)
 
+	if spraying:
+		hose_spray(delta, spray_direction)
 
 # Handle the moving of the character
 func movement(delta: float):
@@ -76,10 +74,9 @@ func movement(delta: float):
 		
 
 func hose_spray(delta: float, spray_direction):
-	if pressure > 0:
+	if pressure > 1:
 		apply_central_impulse(-spray_direction * spray_power * mult * delta)
-		$HoseNozzle/WaterParticles.spray_toggle()
-		pressure -= 1
-		spray_intensity = pressure / 100
-		if pressure < 0:
-			pressure = 0
+
+		$HoseNozzle/WaterParticles.amount_ratio = spray_intensity
+		pressure = clampf(pressure - delta * discharge_speed, 0, max_pressure)
+		spray_intensity = pressure / 100.0

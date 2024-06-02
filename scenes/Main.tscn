@@ -13,7 +13,6 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_7s12c")]
 position = Vector2(66, -48)
-x_damp = 10.0
 spray_power = 20.0
 
 [node name="Cam" type="Camera2D" parent="Player"]
