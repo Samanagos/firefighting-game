@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://7segohc0sfkl"]
+[gd_scene load_steps=12 format=3 uid="uid://7segohc0sfkl"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_isvvp"]
 [ext_resource type="Script" path="res://scripts/HoseNozzle.gd" id="2_8bjvu"]
+[ext_resource type="Texture2D" uid="uid://bu7fuebmfayef" path="res://sprites/Nozzle.png" id="2_61k7d"]
+[ext_resource type="Texture2D" uid="uid://c0buywxoliyid" path="res://sprites/FireFighter1.png" id="2_el238"]
 [ext_resource type="Script" path="res://scripts/WaterParticles.gd" id="3_v67gs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k0v1r"]
 size = Vector2(22, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldrmh"]
-size = Vector2(24, 42)
+size = Vector2(33, 75)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5cuhi"]
 particles_animation = true
@@ -54,41 +56,31 @@ gravity_scale = 1.5
 script = ExtResource("1_isvvp")
 jump_power = 350.0
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -20.0
-offset_right = 11.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.243137, 0.0901961, 1)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k0v1r")
 
 [node name="BodyCol" type="Area2D" parent="."]
 collision_mask = 0
 
+[node name="firefightersprite" type="Sprite2D" parent="BodyCol"]
+position = Vector2(8, 3.8147e-06)
+scale = Vector2(7, 7)
+texture = ExtResource("2_el238")
+
 [node name="Detector" type="CollisionShape2D" parent="BodyCol"]
+position = Vector2(3.5, -5.5)
 shape = SubResource("RectangleShape2D_ldrmh")
 
-[node name="HoseNozzle" type="ColorRect" parent="."]
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 26.0
-offset_bottom = 5.0
-pivot_offset = Vector2(5, 5)
-color = Color(1, 0.815686, 0.290196, 1)
+[node name="HoseNozzle" type="Sprite2D" parent="."]
+position = Vector2(4, -5)
+scale = Vector2(4.40039, 3.80574)
+texture = ExtResource("2_61k7d")
 script = ExtResource("2_8bjvu")
 
 [node name="WaterParticles" type="GPUParticles2D" parent="HoseNozzle"]
 material = SubResource("CanvasItemMaterial_5cuhi")
-position = Vector2(29, 5)
+position = Vector2(5.06931, 1.49012e-07)
+scale = Vector2(0.5, 0.5)
 amount = 100000
 amount_ratio = 0.0
 process_material = SubResource("ParticleProcessMaterial_lp7ip")
@@ -98,9 +90,9 @@ trail_lifetime = 0.5
 script = ExtResource("3_v67gs")
 
 [node name="GroundLeft" type="RayCast2D" parent="."]
-position = Vector2(-11, 0)
-target_position = Vector2(0, 21)
+position = Vector2(-8, 0)
+target_position = Vector2(0, 36)
 
 [node name="GroundRight" type="RayCast2D" parent="."]
-position = Vector2(11, 0)
-target_position = Vector2(0, 21)
+position = Vector2(16, 0)
+target_position = Vector2(0, 36)
